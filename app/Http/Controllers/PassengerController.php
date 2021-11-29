@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\Passenger;
+use Carbon\Carbon;
+use DateTime;
 
 class PassengerController extends Controller
 {
@@ -28,6 +30,7 @@ class PassengerController extends Controller
             'email'         => $request->input('email'),
             'password'      => $request->input('id') == null? Hash::make('password'):$request->input('password'),
             'birthday'      => $request->input('birthday'),
+            'created_by'      => 1,
             // 'status'        => 'A'
         ]);
         return $this->ok("Usuario creado con éxito",$request);

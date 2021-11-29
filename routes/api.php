@@ -46,7 +46,7 @@ Route::group([
     Route::post('refreshToken', [AuthController::class, 'refresh'])->name('refreshToken');
     Route::get('getMyData', [AuthController::class, 'profile'])->name('getMyData');
     Route::post('sendEmail', [ResetPasswordController::class, 'sendEmail'])->name('sendEmail');
-    Route::post('resetPassword', [ChangePasswordController::class, 'process'])->name('resetPassword');
+    Route::post('resetPassword', [ChangePasswordController::class, 'process']);
 
 });
 

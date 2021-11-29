@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\CreateUser;
 use App\Http\Requests\SignUp;
+use App\Models\Passenger;
+use Carbon\Carbon;
+use DateTime;
 
 class AuthController extends Controller
 {
@@ -40,6 +43,17 @@ class AuthController extends Controller
             'gender'        => $request->input('gender'),
         ]);
         // return $this->ok("Usuario creado con éxito",$request);
+        $date = Carbon::parse($request->input('birthday'));
+        $fecha1 = $date->format('Y-m-d');
+        Passenger::create([
+            'name'          => $request->input('name'),
+            // 'lastname'        => $request->input('lastname'),
+            'email'         => $request->input('email'),
+            'password'      => Hash::make($request->input('password')),
+            'birthday'      => $fecha1,
+            'created_by'        => '1'
+            // 'status'        => 'A'
+        ]);
         return $this->login($request);
     }
 
