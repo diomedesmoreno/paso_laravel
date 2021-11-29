@@ -27,7 +27,7 @@ class Ticket extends Model
     }
 
     public function country(){
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Countries::class);
     }
 
 
