@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-use App\Models\Country;
+use App\Models\Countries;
 
-class countriesSeeder extends Seeder
+class CountriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -262,12 +262,14 @@ class countriesSeeder extends Seeder
             [ 'abbreviation' => 'ZM', 'name' => 'Zambia'],
             [ 'abbreviation' => 'ZW', 'name' => 'Zimbabue']
         ];
-        Country::factory()
-            ->count(50)
-            ->hasPosts(1)
-            ->create();
-        // foreach ($registers as $register) {
+        // Country::factory()
+        //     ->count(50)
+        //     ->hasPosts(1)
+        //     ->create();
+        foreach ($registers as $register) {
         // 	DB::table('countries')->insert($register);
-        // }
+        Countries::create($register);
+        }
+        
     }
 }

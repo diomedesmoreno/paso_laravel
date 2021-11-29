@@ -21,8 +21,8 @@ class ResetPasswordController extends Controller
     public function sendEmail(Request $request)
     {
         if (!$this->validateEmail($request->email)) {
-            return $this->notFound('Email does\'t found on our system');
-            // return $this->failedResponse();
+            // return $this->preconditionFailed('Email does\'t found on our system');
+            return $this->failedResponse();
         }
 
         $this->send($request->email);
@@ -66,7 +66,7 @@ class ResetPasswordController extends Controller
     {
         return response()->json([
             'error' => 'Este email no se encontro en nuestra base de datos'
-        ], Response::HTTP_NOT_FOUND);
+        ], 412);
     }
 
     public function successResponse()

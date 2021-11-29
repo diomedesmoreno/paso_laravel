@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Passenger extends Model
+class Planes extends Model
 {
     use HasFactory;
-    protected $fillable = ["id", "name", "lastName","gender","birthday","identifier","email","created_by" ];
+    protected $fillable = ["id", "name", "types_planes_id", "seating","created_by" ];
 
 }

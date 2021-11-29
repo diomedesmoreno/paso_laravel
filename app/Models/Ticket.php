@@ -4,10 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ticket extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
+
+    protected $fillable = [
+        'passenger_id',
+        "countries_id",
+        "flights_id",
+        "status",
+        "created_by"
+    ];
 
     public function passenger(){
         return $this->belongsTo(Passenger::class);
@@ -20,4 +29,6 @@ class Ticket extends Model
     public function country(){
         return $this->belongsTo(Country::class);
     }
+
+
 }

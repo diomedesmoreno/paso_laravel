@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class Companies extends Model
 {
     use HasFactory;
-    protected $table = "countries";
-    protected $fillable = ["id", "name", "abbreviation" ];
+    protected $fillable = ["id", "name", "description","created_by" ];
+
 }

@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
 
+
 class ChangePasswordController extends Controller
 {
-    public function process(ChangePasswordRequest $request)
+    public function process(Request $request)
     {
         return $this->getPasswordResetTableRow($request)->count()> 0 ? $this->changePassword($request) : $this->tokenNotFoundResponse();
     }
@@ -23,7 +24,7 @@ class ChangePasswordController extends Controller
 
     private function tokenNotFoundResponse()
     {
-        return $this->unauthorized('Token or Email is incorrect');
+        return $this->unauthorized('El Token o el email es invalido');
         // return response()->json(['error' => 'Token or Email is incorrect'],Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 

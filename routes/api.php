@@ -11,8 +11,13 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\TicketController;
-// use App\Http\Controllers\GeneralController;
-// use App\Http\Controllers\GeneralInformationController;
+use App\Http\Controllers\DetailsFlightController;
+use App\Http\Controllers\CountriesController;
+
+use App\Http\Controllers\AirportsController;
+use App\Http\Controllers\TypesPlanesController;
+use App\Http\Controllers\PlanesController;
+use App\Http\Controllers\CompaniesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +49,7 @@ Route::group([
     Route::post('resetPassword', [ChangePasswordController::class, 'process'])->name('resetPassword');
 
 });
+
 Route::group([
         'middleware' => 'api',
         // 'middleware' => 'auth:api',
@@ -51,23 +57,48 @@ Route::group([
     ], function ($router) {
     // 
     // Pais
-    Route::get('/countries', [CountryController::class, 'table']);
+    Route::get('/countries', [CountriesController::class, 'table']);
     
     // Vuelos
     Route::get('flights', [FlightController::class, 'table']);
     Route::post('flights', [FlightController::class, 'store']);
     Route::put('flights/{id}', [FlightController::class, 'update']);
     Route::get('flights/{id}', [FlightController::class, 'show']);
+    Route::get('flights-search', [FlightController::class, 'search']);
     // Pasajero
-    Route::get('passenger', [PassengerController::class, 'table']);
-    Route::post('passenger', [PassengerController::class, 'store']);
-    Route::put('passenger/{id}', [PassengerController::class, 'update']);
-    Route::get('passenger/{id}', [PassengerController::class, 'details']);
+    Route::get('passengers', [PassengerController::class, 'table']);
+    Route::post('passengers', [PassengerController::class, 'store']);
+    Route::put('passengers/{id}', [PassengerController::class, 'update']);
+    Route::get('passengers/{id}', [PassengerController::class, 'details']);
     // Ticket
     // Route::get('ticket', [TicketController::class, 'table']);
-    Route::post('ticket', [TicketController::class, 'store']);
-    Route::put('ticket/{id}', [TicketController::class, 'update']);
-    // Route::get('ticket/{id}', [TicketController::class, 'show']);
-
+    Route::post('tickets', [TicketController::class, 'store']);
+    Route::post('tickets-reservation', [TicketController::class, 'saveTicket']);
+    Route::put('tickets/{id}', [TicketController::class, 'update']);
+    // Detalle
+    Route::get('details', [DetailsFlightController::class, 'table']);
+    Route::post('details', [DetailsFlightController::class, 'store']);
+    Route::put('details/{id}', [DetailsFlightController::class, 'update']);
+    Route::get('details/{id}', [DetailsFlightController::class, 'details']);
+    // Aeropuerto     
+    Route::get('airports', [AirportsController::class, 'table']);
+    Route::post('airports', [AirportsController::class, 'store']);
+    Route::put('airports/{id}', [AirportsController::class, 'update']);
+    Route::get('airports/{id}', [AirportsController::class, 'show']);
+    // Tipos de aviones
+    Route::get('type-plane', [TypesPlanesController::class, 'table']);
+    Route::post('type-plane', [TypesPlanesController::class, 'store']);
+    Route::put('type-plane/{id}', [TypesPlanesController::class, 'update']);
+    Route::get('type-plane/{id}', [TypesPlanesController::class, 'show']);
+    // Aviones
+    Route::get('planes', [PlanesController::class, 'index']);
+    Route::post('planes', [PlanesController::class, 'store']);
+    Route::put('planes/{id}', [PlanesController::class, 'update']);
+    Route::get('planes/{id}', [PlanesController::class, 'show']);
+    // Companias
+    Route::get('companies', [CompaniesController::class, 'table']);
+    Route::post('companies', [CompaniesController::class, 'store']);
+    Route::put('companies/{id}', [CompaniesController::class, 'update']);
+    Route::get('companies/{id}', [CompaniesController::class, 'show']);
 
 });

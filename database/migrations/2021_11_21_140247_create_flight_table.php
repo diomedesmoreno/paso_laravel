@@ -32,6 +32,7 @@ class CreateFlightTable extends Migration
             $table->string('hour')->nullable();
             $table->string('departuretime')->nullable();
             $table->string('arrivaltime')->nullable();
+            $table->string('flightDuration')->nullable();
 
             $table->unsignedBigInteger('countryFrom');
             $table->unsignedBigInteger('countryTo');

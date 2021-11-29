@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\BaseController as Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Passenger;
 
@@ -27,7 +28,7 @@ class PassengerController extends Controller
             'email'         => $request->input('email'),
             'password'      => $request->input('id') == null? Hash::make('password'):$request->input('password'),
             'birthday'      => $request->input('birthday'),
-            'status'        => 'A'
+            // 'status'        => 'A'
         ]);
         return $this->ok("Usuario creado con éxito",$request);
     }
